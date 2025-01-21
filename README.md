@@ -8,7 +8,10 @@ During an extensive investigation, we confirmed the correct compilation order of
 
 ## Build Instructions (C64 version of ChipWits)
 
-In September 2023, the ChipWits team recovered Commodore C64 disks containing the original 1985 ChipWits source code. This guide explains how to build that code, using the recovered disk images and a Commodore 64 emulator (VICE). Ensure two disk drives (drive 8 and drive 9) are set up in VICE.
+In September 2023, the ChipWits team recovered Commodore C64 disks containing the original 1985 ChipWits source code. This guide explains how to build that code, using the recovered disk images and a Commodore 64 emulator (VICE). 
+
+> [!NOTE]
+> Ensure two disk drives (drive 8 and drive 9) are set up in VICE.
 
 ### Source Code
 
@@ -18,12 +21,13 @@ Disk images are under c64/disks, except buildtools.d64.
 
 ### Handling Read Errors
 
-If a read error occurs when switching disks (e.g. seeing “0) 73, CBM DOS V2.6 1541,00,00”), clear buffers, then retry:
-
-```forth
-EMPTY-BUFFERS
-1 LIST
-```
+> [!TIP]
+> If a read error occurs when switching disks (e.g. seeing “0) 73, CBM DOS V2.6 1541,00,00”), clear buffers, then retry e.g. :
+>
+> ```forth
+> EMPTY-BUFFERS
+> 1 LIST
+> ```
 
 ### Step 1: Load the Compiler
 
@@ -46,6 +50,8 @@ EMPTY-BUFFERS
    DR1
    64 ' C/L !
    1 LIST
+   EMPY-BUFFERS
+   1 LIST
    1 LOAD
    2 LOAD
    DR0
@@ -57,7 +63,6 @@ EMPTY-BUFFERS
 2. In FORTH:
 
    ```forth
-   40 ' C/L !
    EMPTY-BUFFERS
    79 LIST
    171 LIST
@@ -72,7 +77,6 @@ Attach the disk “CW Game Screens.d64” to drive 9. Make sure drive 8 is still
 2. In FORTH:
 
    ```forth
-   40 ' C/L !
    EMPTY-BUFFERS
    80 LIST
    171 LIST
